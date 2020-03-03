@@ -24,16 +24,16 @@ from wordcloud import WordCloud
 
 # 1.1 Read in the raw_tweets and ground_truth data
 raw_tweets_df = pd.read_table('AbortionTwitterData/raw_tweets.txt',  sep='\t')
-print raw_tweets_df.head()
-print "raw_tweets size is", raw_tweets_df.shape[0]
+# print raw_tweets_df.head()
+# print "raw_tweets size is", raw_tweets_df.shape[0]
 
 ground_truth_df = pd.read_table('AbortionTwitterData/ground_truth.txt',  sep='\t')
-print ground_truth_df.head()
-print "groundturth size is", ground_truth_df.shape[0]
+# print ground_truth_df.head()
+# print "groundturth size is", ground_truth_df.shape[0]
 
 # 1.2 Take labels from ground_truth and assign them to the corresponding raw_tweets
 raw_tweets_df['Label'] = "Neutral"
-print raw_tweets_df.head()
+# print raw_tweets_df.head()
 for row in range(ground_truth_df.shape[0]):
     raw_tweets_df.loc[row, 'Label'] = ground_truth_df.loc[row, 'Label']
 
@@ -45,8 +45,8 @@ raw_tweets_df['Tweet Text'] = raw_tweets_df['Tweet Text'].str.lower()
 stop_words = set(stopwords.words("english")) 
 raw_tweets_df['Tweet Text'].apply(lambda x: [item for item in x if item not in stop_words])
 
-print "df with stopwords removed is"
-print raw_tweets_df
+# print "df with stopwords removed is"
+# print raw_tweets_df
 
 # 2.4 Preprocessing PUNCTUATION - remove punctuation marks
 raw_tweets_df['Tweet Text'] = raw_tweets_df['Tweet Text'].str.replace('[^\\w\\s]', '')
